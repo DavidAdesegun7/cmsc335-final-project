@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Weather Results</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h1><%= data.location.name %>, <%= data.location.region %>, <%= data.location.country %></h1>
+
+      <div class="row">
+        <img src="https:<%= data.current.condition.icon %>" alt="icon" />
+        <div>
+          <p class="big"><%= data.current.temp_f %>°F</p>
+          <p><%= data.current.condition.text %></p>
+          <p>Humidity: <%= data.current.humidity %>%</p>
+          <p>Wind: <%= data.current.wind_mph %> mph</p>
+        </div>
+      </div>
+
+      <form method="POST" action="/favorites">
+        <input type="hidden" name="city" value="<%= data.location.name %>">
+        <input type="hidden" name="region" value="<%= data.location.region %>">
+        <input type="hidden" name="country" value="<%= data.location.country %>">
+        <button type="submit">Save to Favorites</button>
+      </form>
+
+      <p>
+        <a href="/">Search again</a> · <a href="/favorites">View Favorites</a>
+      </p>
+    </div>
+  </body>
+</html>

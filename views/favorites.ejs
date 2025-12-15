@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Favorites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h1>Favorites</h1>
+
+      <% if (favorites.length === 0) { %>
+        <p>No favorites yet.</p>
+      <% } else { %>
+        <ul>
+          <% favorites.forEach(f => { %>
+            <li class="fav">
+              <span>
+                <strong><%= f.city %></strong>
+                <% if (f.region) { %>, <%= f.region %><% } %>
+                <% if (f.country) { %>, <%= f.country %><% } %>
+              </span>
+
+              <form method="POST" action="/favorites/<%= f._id %>/delete">
+                <button type="submit">Delete</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <p><a href="/">Back to search</a></p>
+    </div>
+  </body>
+</html>
